@@ -1,6 +1,6 @@
 import numpy as np
 import os
-# os.system("pip3 install numpy")
+# os.system("pip3 install numpy") 
 
 
 prcs = [float(x) for x in open("/home/ubuntu/environment/data5500.fa21/week3_algo_analysis_tradingexample/wmt.txt").readlines()]

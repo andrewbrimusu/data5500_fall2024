@@ -46,7 +46,7 @@ print("y predictions: ", y_pred)
 # print("y actuals: ", y_test)
 
 confusion_matrix = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
-sn.heatmap(confusion_matrix, annot=True).get_figure().savefig("/home/ubuntu/environment/data5500.fa21/week12_ml/random_forest.png")
+sn.heatmap(confusion_matrix, annot=True).get_figure().savefig("/home/ubuntu/environment/data5500_fall2022/week12_ml/random_forest.png")
 # sn.get_figure().savefig("results.png")
 print('Accuracy: ',metrics.accuracy_score(y_test, y_pred))
 plt.show()
@@ -73,13 +73,14 @@ for model in models:
     print("y predictions: ", y_pred)
     # print("y actuals: ", y_test)
     
-    for x in range(20):
-        for y in range(20):
-            lst[x][y] = clf.predict([[ 420 + 20*x, 2 + y*0.1, 3, 25]])[0]
+    for x in range(20):#gmat
+        for y in range(20):#gpa
+            lst[y][x] = clf.predict([[ 420 + 20*x, 2 + y*0.1, 3, 25]])[0] # hard-coding 3 year work exp., and 25 years old
             
-            
+    print(str(model), "pred list: ", lst)
+    
     confusion_matrix = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
-    sn.heatmap(confusion_matrix, annot=True).get_figure().savefig("/home/ubuntu/environment/data5500.fa21/week12_ml/" + str(model) + ".png")
+    sn.heatmap(confusion_matrix, annot=True).get_figure().savefig("/home/ubuntu/environment/data5500_fall2022/week12_ml/confusion_matrix/" + str(model) + "_confusion_matrix.png")
     # sn.get_figure().savefig("results.png")
     print('Accuracy: ',metrics.accuracy_score(y_test, y_pred))
     plt.show()
@@ -89,5 +90,6 @@ for model in models:
     print(clf.predict([[690, 3.3, 3, 25]])) #  predict candidate with gmat 690, gpa 3.3, 3 yrs work exp., 25 years old
     print(clf.predict([[660, 2, 3, 25]])) #  predict candidate with gmat 660, gpa 2.0, 3 yrs work exp., 25 years old
 
-    plt.imshow(np.array(lst), cmap='Blues',interpolation="nearest")
-    plt.savefig(str(model)+".png")
+    plt.imshow(np.array(lst), cmap='Blues',origin="lower", interpolation="nearest",extent=[420,800,2,4], aspect="auto")
+    plt.colorbar()
+    plt.savefig("/home/ubuntu/environment/data5500_fall2022/week12_ml/model_graphs/" + str(model) + ".png")
