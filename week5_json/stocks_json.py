@@ -6,7 +6,7 @@ ticker = 'AAPL'
 url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol='+ticker+'&outputsize=full&apikey=NG9C9EPVYBMQT0C8'
 print(url)
 request = requests.get(url)
-print(request.text)
+# print(request.text)
 input()
 
 key1 = "Time Series (Daily)"
