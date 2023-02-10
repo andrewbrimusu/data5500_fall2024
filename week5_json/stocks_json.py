@@ -7,7 +7,7 @@ url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symb
 print(url)
 request = requests.get(url)
 # print(request.text)
-input()
+# input()
 
 key1 = "Time Series (Daily)"
 key3 = "4. close"
