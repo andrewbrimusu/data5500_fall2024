@@ -35,7 +35,8 @@ def insert(node, key):
 	
 	
 # Task 1. Write a function to find the minimum value in the tree
-
+def findMin(node):
+    pass
 
 # Task 2. Write a recursive findMin function
 
@@ -97,7 +98,7 @@ def deleteNode(root, key):
 		# Node with two children: 
 		# Get the inorder successor
 		# (smallest in the right subtree)
-		temp = minValueNode(root.right)
+		temp = findMin(root.right)
 
 		# Copy the inorder successor's 
 		# content to this node
@@ -133,21 +134,24 @@ def main():
     inorder(root)
     # PrintTree(root)
     
-    # deleting 
-    print("\nDelete 20")
-    root = deleteNode(root, 20)
-    print("Inorder traversal of the modified tree")
-    inorder(root)
+    ##########################################################
+    # Uncomment deleteNode calls after minNode is complete
     
-    print("\nDelete 30")
-    root = deleteNode(root, 30)
-    print("Inorder traversal of the modified tree")
-    inorder(root)
+    # # deleting 
+    # print("\nDelete 20")
+    # root = deleteNode(root, 20)
+    # print("Inorder traversal of the modified tree")
+    # inorder(root)
     
-    print("\nDelete 50")
-    root = deleteNode(root, 50)
-    print("Inorder traversal of the modified tree")
-    inorder(root)
+    # print("\nDelete 30")
+    # root = deleteNode(root, 30)
+    # print("Inorder traversal of the modified tree")
+    # inorder(root)
+    
+    # print("\nDelete 50")
+    # root = deleteNode(root, 50)
+    # print("Inorder traversal of the modified tree")
+    # inorder(root)
     
     display(root)
     
@@ -161,17 +165,23 @@ def main():
     tree2 = insert(tree2, 9)
     
     display(tree2)
-    inorder(tree2)
-    print()
-    preorder(tree2)
-    print()
-    postorder(tree2)
+    
+    
+    ###########################################################
+    # Uncomment after preorder and postorder have are complete
+    # inorder(tree2)
+    # print()
+    # preorder(tree2)
+    # print()
+    # postorder(tree2)
     
     print("\nmin value: ", findMin(tree2).key)
     print("\nmin value recursive: ", findMinRec(tree2).key)
    
-            
         
+    ############################################################
+    # Uncomment after findMin is complete
+    
     # create a list of 10000 numbers
     # lst = [random.randint(1,10000) for i in range(1000000)]
     # # each number is a random number between 1 and 10000 random.randint(1,10000)
