@@ -5,6 +5,7 @@ import time
 # in binary search tree
 
 from print_tree import *
+from find_val import *
 
 # A Binary Tree Node
 
@@ -39,10 +40,12 @@ def findMin(node):
     pass
 
 # Task 2. Write a recursive findMinRec function
-
+def findMinRec(node):
+    pass
     
 # Task 3. Write a findMaxRecursive
-
+def findMaxRec(node):
+    pass
 
 # print tree inorder
 def inorder(root):
