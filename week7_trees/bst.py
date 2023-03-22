@@ -38,7 +38,7 @@ def insert(node, key):
 def findMin(node):
     pass
 
-# Task 2. Write a recursive findMin function
+# Task 2. Write a recursive findMinRec function
 
     
 # Task 3. Write a findMaxRecursive
@@ -135,7 +135,7 @@ def main():
     # PrintTree(root)
     
     ##########################################################
-    # Uncomment deleteNode calls after minNode is complete
+    # Uncomment deleteNode calls after findMin is complete Task 1
     
     # # deleting 
     # print("\nDelete 20")
@@ -168,19 +168,21 @@ def main():
     
     
     ###########################################################
-    # Uncomment after preorder and postorder have are complete
+    # Uncomment after preorder and postorder have are complete, Task 4 and Task 5
     # inorder(tree2)
     # print()
     # preorder(tree2)
     # print()
     # postorder(tree2)
     
-    print("\nmin value: ", findMin(tree2).key)
-    print("\nmin value recursive: ", findMinRec(tree2).key)
-   
-        
+    
+    
     ############################################################
-    # Uncomment after findMin is complete
+    # Uncomment after findMin is complete Task 1
+    
+    # print("\nmin value: ", findMin(tree2).key)
+    # print("\nmin value recursive: ", findMinRec(tree2).key)
+   
     
     # create a list of 10000 numbers
     # lst = [random.randint(1,10000) for i in range(1000000)]
