@@ -153,6 +153,7 @@ def main():
     # print("Inorder traversal of the modified tree")
     # inorder(root)
     
+    print()
     display(root)
     
     
@@ -164,6 +165,7 @@ def main():
     tree2 = insert(tree2, 5)
     tree2 = insert(tree2, 9)
     
+    print()
     display(tree2)
     
     
