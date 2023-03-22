@@ -152,6 +152,7 @@ def main():
     # root = deleteNode(root, 50)
     # print("Inorder traversal of the modified tree")
     # inorder(root)
+    #########
     
     print()
     display(root)
@@ -176,6 +177,7 @@ def main():
     # preorder(tree2)
     # print()
     # postorder(tree2)
+    #########
     
     
     
@@ -214,6 +216,7 @@ def main():
     # print("search time tree (sec): ",end-start)
     
     # print("---------------------")
+    #########
     
     
 main()
