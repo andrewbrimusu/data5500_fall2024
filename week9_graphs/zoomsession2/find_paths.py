@@ -6,11 +6,13 @@ from itertools import permutations
 
 
 import os
+# old install commands
 # os.system("sudo apt-get update")
 # os.system("sudo apt-get install libjpeg-dev zlib1g-dev")
 # os.system("sudo pip3 install Pillow")
 # os.system("sudo -H pip3 install matplotlib")
 
+# new install commands > 2023.04.03
 # os.system("sudo pip3 install networkx")
 # os.system("sudo apt-get install python3-matplotlib")
 
