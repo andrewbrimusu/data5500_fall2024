@@ -7,9 +7,11 @@ from itertools import permutations
 
 import os
 # os.system("sudo pip3 install networkx")
+# os.system("sudo apt-get update")
 # os.system("sudo apt-get install libjpeg-dev zlib1g-dev")
-# os.system("sudo pip3 install Pillow")
-# os.system("sudo pip3 install matplotlib")
+# os.system("sudo -H pip3 install Pillow")
+# os.system("sudo -H pip3 install matplotlib")
+
 
 import matplotlib.pyplot as plt
 import networkx as nx
