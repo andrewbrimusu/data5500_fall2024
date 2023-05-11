@@ -1,11 +1,12 @@
-from DeckOfCards import DeckOfCards
+'''
+This is an example of how to create a DeckOfCards object, shuffle it, and deal cards to play a game
+'''
+
+from DeckOfCards import *
 
 deck = DeckOfCards()
-
 deck.print_deck()
-
 deck.shuffle_deck()
-
 deck.print_deck()
 
 

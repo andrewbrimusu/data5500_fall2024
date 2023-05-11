@@ -27,6 +27,7 @@ class DeckOfCards():
                 
     def shuffle_deck(self):
         random.shuffle(self.deck)
+        self.play_idx = 0
         
     def print_deck(self):
         for card in self.deck:
