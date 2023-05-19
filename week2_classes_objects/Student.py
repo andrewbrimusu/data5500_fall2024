@@ -1,3 +1,4 @@
+# encapsulation example, anumber is hidden (private)
 class Student:
     def __init__(self, anum, name):
         self.__anum = anum
