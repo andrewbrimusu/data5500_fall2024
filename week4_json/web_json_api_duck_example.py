@@ -24,6 +24,10 @@ request = requests.get(url)
 # print(request.text) # print to double check data from web json api is good
 dct_full = json.loads(request.text)
 
+
+
+
+#####################################################################
 # programming activity
 # What is the score of the associated word: mallard
 # Steps: 

@@ -18,7 +18,7 @@ url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symb
 # variables to query alphavantage
 ticker = 'AAPL'
 key_timeseries = "Time Series (Daily)"
-key_close = "4. close"
+key_close = "5. adjusted close"
 first_date = "2022-05-30"
 
 #generate url
@@ -30,10 +30,15 @@ request = requests.get(url)
 # print(request.text) # print to double check data from web json api is good
 dct1 = json.loads(request.text)
 
+
 # create csv file to store stock data
 file = open(ticker + ".csv", "w")
 file.write("Date," + ticker + "\n")
 
+
+
+
+#####################################################################
 # iterate through prices and store them in csv
 for date in dct1[key_timeseries]:
     ### ALERT ####

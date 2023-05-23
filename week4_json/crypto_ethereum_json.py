@@ -48,7 +48,9 @@ d = json.loads(req.text)
 print(dt_s, d[key_md][key_prc][key_usd])
 
 
-##################################################################
+
+
+#####################################################################
 # Running the program, for 365 days and saving to a csv file
 
 
