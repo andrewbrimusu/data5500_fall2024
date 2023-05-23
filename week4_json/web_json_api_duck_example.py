@@ -1,6 +1,13 @@
+'''
+This program queries datamuse for words associated with a given word.
+The associated words are given a score.
+'''
+
 import requests
 import json
 
+# example url to query datamuse web json api
+example_url = "https://api.datamuse.com/words?ml=duck"
 
 # variables to query alphavantage
 word = 'duck'
@@ -24,9 +31,40 @@ dct_full = json.loads(request.text)
 # 2. search for word "mallard"
 # 3. print associated score value for mallard
 
-for dct_small in dct_full:
-    # print(dct_small) # print all values to verify data is good
-    if dct_small[key_word] == search_word:
-        print("word: ", dct_small[key_word])
-        print("value: ", dct_small[key_score])
+# answer below, try yourself before looking
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# for dct_small in dct_full:
+#     # print(dct_small) # print all values to verify data is good
+#     if dct_small[key_word] == search_word:
+#         print("word: ", dct_small[key_word])
+#         print("value: ", dct_small[key_score])
         
