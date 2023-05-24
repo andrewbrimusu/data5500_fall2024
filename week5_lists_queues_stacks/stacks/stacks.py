@@ -1,3 +1,13 @@
+'''
+Python program to demonstrate queue 3 different ways to use stacks in Python
+'''
+
+from collections import deque
+from queue import LifoQueue
+
+#######################################
+# Demonstrating a stack using a Python list
+
 stack = []
  
 # append() function to push
@@ -25,11 +35,9 @@ print(stack)
 # as the stack is now empty
 
 
+#######################################
+# Demonstrating a stack using a deque  (similar to queue, just remove latest)
 
-#deque implementation
-
-from collections import deque
- 
 stack = deque()
  
 # append() function to push
@@ -58,8 +66,9 @@ print(stack)
 
 
 
-from queue import LifoQueue
- 
+#######################################
+# Demonstrating a stack using a the LifoQueue library
+
 # Initializing a stack
 stack = LifoQueue(maxsize = 3)
  

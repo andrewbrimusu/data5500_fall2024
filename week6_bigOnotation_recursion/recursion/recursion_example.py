@@ -1,3 +1,7 @@
+'''
+This program demonstrates recursion, a function calling itself
+'''
+
 def my_function(x):
     #1 base case.  Stops recursion
     if x == 100:
@@ -11,9 +15,6 @@ def my_function(x):
     my_function(x)
     
     return None
-    
-    
+
     
 my_function(0)
-
-

@@ -1,8 +1,15 @@
-# Python program to 
-# demonstrate queue implementation
-# using list
- 
-# Initializing a queue
+'''
+Python program to demonstrate queue 3 different ways to use queues in Python
+'''
+
+from collections import deque
+from queue import Queue
+
+
+
+#######################################
+# Demonstrating a queue using a Python list
+
 queue = []
  
 # Adding elements to the queue
@@ -28,10 +35,9 @@ print(queue)
 
 
 
+#######################################
+# Demonstrating a queue using a deque 
 
-# deque in Python
-from collections import deque
- 
 # Initializing a queue
 q = deque()
  
@@ -60,15 +66,9 @@ q = [1,2,3,4,5,6,7,8,9]
 
 
 
+#######################################
+# Demonstrating a queue using a the Queue library
 
-
-# Python program to
-# demonstrate implementation of
-# queue using queue module
- 
- 
-from queue import Queue
- 
 # Initializing a queue
 q = Queue(maxsize = 3)
  
