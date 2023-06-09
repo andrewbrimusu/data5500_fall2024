@@ -62,7 +62,7 @@ def mergeSort(arr,l,r):
   
   
 # Driver code to test above 
-arr = [12, 11, 13, 5, 6, 7] 
+arr = [3, 1, 4, 1, 5, 9, 2, 6] 
 print(arr)
 mergeSort(arr,0,len(arr)-1) 
 print(arr)

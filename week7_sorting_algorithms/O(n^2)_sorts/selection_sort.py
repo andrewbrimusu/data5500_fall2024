@@ -1,6 +1,7 @@
-import sys 
+#########################################
+# selection sort
+# select the smallest in list, swap with current position
 lst = [3, 1, 4, 1, 5, 9, 2, 6]
-print(lst)
 
 # Trlstverse through all array elements 
 for i in range(len(lst)): 
@@ -15,7 +16,6 @@ for i in range(len(lst)):
     # Swap the found minimum element with  
     # the first element         
     lst[i], lst[min_idx] = lst[min_idx], lst[i] 
+    # print(lst) # each iteration
     
-    print(lst)
-    
-print(lst)
+print("selection sort: ", lst)
