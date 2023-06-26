@@ -1,14 +1,27 @@
+'''
+This program takes the currency exchange rates in a 2D list
+and creates a graph with the currencies as nodes, and exchange rates as edges
+'''
+
 import requests
 import json
 import time
 from datetime import datetime, timedelta
-from itertools import permutations
+from itertools import combinations
 
 import networkx as nx
 from networkx.classes.function import path_weight
 
-import matplotlib.pyplot as plt
 
+###########################################
+# 2D list of currency exchange rates 
+# 1st row is Polish Zolty, PLN
+# to go from PLN to PLN, exchange rate is 1.0
+# to go from PLN to EUR, exchange rate is 0.23
+# Meaning 1 PLN gets you 0.23 Euros
+# to go from PLN to RUB (Russian Ruble), exchange rate is 16.43
+# Meaning 1 PLN gets your 16.43  Rubles
+currencies = ('PLN', 'EUR', 'USD', 'RUB', 'INR', 'MXN')
 
 rates = [
     [1, 0.23, 0.25, 16.43, 18.21, 4.94],
@@ -19,8 +32,11 @@ rates = [
     [0.20, 0.047, 0.052, 3.33, 3.69, 1],
 ]
 
-currencies = ('PLN', 'EUR', 'USD', 'RUB', 'INR', 'MXN')
 
+
+###########################################
+# Creating graph by iterating through list of exchange rates
+# and adding each each, 2 currency nodes, and the exchange rate in between
 g = nx.DiGraph()
 edges = []
 i = 0
@@ -33,18 +49,39 @@ for c1 in currencies:
         j +=1
     i += 1
 g.add_weighted_edges_from(edges) 
-# print(g.info())
 
 print(g.nodes)
-# input()
-for n1, n2 in permutations(g.nodes,2):
-    print("paths from ", n1, "to", n2, "----------------------------------")
+
+
+
+###########################################
+# Traversing the Graph
+# Going through each of the paths from one currency to the others
+# combination function returns all possible currency pairs
+# calculating path weight from one currency to another
+# then back again
+for n1, n2 in combinations(g.nodes,2):
+    print("All paths from ", n1, "to", n2, "---------------")
+    
     for path in nx.all_simple_paths(g, source=n1, target=n2):
-        print(path)
-    for path in nx.all_simple_paths(g, source=n2, target=n1):
-        print(path)
+        print("Path To", path)
+    
+        path_weight = 1.0
+        # calculating the path weight from the first currency to the second
+        for i in range(len(path) - 1):
+            path_weight *= g[path[i]][path[i+1]]['weight']
+        print("path_weight: ", path_weight)
+    
+        # Reversing the path, so calculate the path weight returning 
+        path.reverse()
+        print("Path From", path)
         
-print(0)
-
-
-
+        path_weight = 1.0
+        # calculating the path weight from the first currency to the second
+        for i in range(len(path) - 1):
+            path_weight *= g[path[i]][path[i+1]]['weight']
+        print("path_weight: ", path_weight)
+    
+    print("---------------\n")
+    
+input("press enter")
