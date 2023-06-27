@@ -1,6 +1,12 @@
 '''
 This program takes the currency exchange rates in a 2D list
-and creates a graph with the currencies as nodes, and exchange rates as edges
+and creates a graph with the currencies as nodes, and exchange rates as edges.
+
+The graph is traversed to calculate the exchange rates to see if they are in equilibrium
+
+For example, starting with 1.0 USD -> EUR -> INR -> MXN then back to INR -> EUR -> USD
+If the exchanges above result in 1.001 USD you have arbitraged the exchange rates
+This is referred to as 
 '''
 
 import requests
@@ -13,9 +19,11 @@ import networkx as nx
 from networkx.classes.function import path_weight
 
 
+
 ###########################################
 # 2D list of currency exchange rates 
-# 1st row is Polish Zolty, PLN
+# Analyze the first row of the 2D list
+# 1st row shows the exchange rates for PLN (Polish Zolty)
 # to go from PLN to PLN, exchange rate is 1.0
 # to go from PLN to EUR, exchange rate is 0.23
 # Meaning 1 PLN gets you 0.23 Euros
@@ -66,21 +74,24 @@ for n1, n2 in combinations(g.nodes,2):
     for path in nx.all_simple_paths(g, source=n1, target=n2):
         print("Path To", path)
     
-        path_weight = 1.0
+        path_weight_to = 1.0
         # calculating the path weight from the first currency to the second
+        # Iterating through all the edges in the path and multiplying them together
+        # to get the weight of the entire path
         for i in range(len(path) - 1):
-            path_weight *= g[path[i]][path[i+1]]['weight']
-        print("path_weight: ", path_weight)
+            path_weight_to *= g[path[i]][path[i+1]]['weight'] # multiplying each edge weight
+        print("path weight: ", path_weight_to)
     
-        # Reversing the path, so calculate the path weight returning 
+        # Reversing the path, to calculate the path weight returning 
+        # exchange rates, the paths to and from, in equilibrium multiplied together should be 1.0
         path.reverse()
         print("Path From", path)
         
-        path_weight = 1.0
-        # calculating the path weight from the first currency to the second
+        path_weight_from = 1.0
+        # calculating the path weight from the second currency back to the first
         for i in range(len(path) - 1):
-            path_weight *= g[path[i]][path[i+1]]['weight']
-        print("path_weight: ", path_weight)
+            path_weight_from *= g[path[i]][path[i+1]]['weight']
+        print("path weight: ", path_weight_from)
     
     print("---------------\n")
     

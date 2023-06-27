@@ -21,7 +21,7 @@ edges = []
 # Querying floatrates.com for currency exchange rates
 url1 = "http://www.floatrates.com/daily/"
 url2 = ".json"
-for c1, c2 in permutations(currencies,2):
+for c1, c2 in permutations(currencies,2): # querying all permutations of currency pairs
     url = url1 + c1 + url2
     print(c1, "to", c2, url)
     
