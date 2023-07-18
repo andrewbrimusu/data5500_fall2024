@@ -1,5 +1,12 @@
-# This script is an extension of random_forest_example.py
-# It is the same logic but with more models
+'''
+This program compares the most popular machine learning models and how they perform classifications
+The output in /output/cluster_classes_models_visualize.png shows the same classes, but different predictions
+by the different models
+
+The data comes from sklearn as the make_moons and make_moons datasets
+
+'''
+
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -24,6 +31,8 @@ model_visualize_fil = curr_dir + "/output/" + "cluster_classes_models_visualize.
 h = .02  # step size in the mesh
 
 
+##################################################################
+# Create models
 names = ["Nearest Neighbors", "Linear SVM", "RBF SVM", "Gaussian Process",
          "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
          "Naive Bayes", "QDA"]
@@ -53,7 +62,10 @@ datasets = [make_moons(noise=0.3, random_state=0),
 
 figure = plt.figure(figsize=(27, 9))
 i = 1
-# iterate over datasets
+
+
+##################################################################
+# iterate over dataset and make predictions
 for ds_cnt, ds in enumerate(datasets):
     # preprocess dataset, split into training and test part
     X, y = ds

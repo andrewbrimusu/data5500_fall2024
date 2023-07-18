@@ -1,3 +1,9 @@
+'''
+This program imports amazon, imdb, and yelp reviews and outputs the sentiment of the review 
+using multiple 
+
+'''
+
 # Programming exercise
 # 1. Get sentiment example below working for SGD
 # 2. Add the following models, and find a better one than SGD
@@ -58,6 +64,9 @@ from sklearn.metrics import classification_report
 
 curr_dir = os.path.dirname(__file__) # get the current directory of this file
 
+##################################################################
+# Input sentiment data from 3 data sources and concatenating them together
+
 #Amazon Data
 input_file = curr_dir + "/amazon_cells_labelled.txt"
 amazon = pd.read_csv(input_file,delimiter='\t',header=None)
@@ -90,6 +99,7 @@ print(distOfDetails)
 plt.pie(distOfDetails['COUNT'],autopct='%1.0f%%',shadow=True, startangle=360)
 plt.show()
 
+##################################################################
 #Text Preprocessing
 columns = ['index','Class', 'Sentence']
 df_ = pd.DataFrame(columns=columns)
@@ -115,7 +125,8 @@ X_train, X_test, y_train, y_test = train_test_split(data['Sentence'].values.asty
 classes  = data['Class'].unique()
 
 
-#grid search result
+##################################################################
+# creating one model, SGDClassifier as an example
 vectorizer = TfidfVectorizer(analyzer='word',ngram_range=(1,2), max_features=50000,max_df=0.5,use_idf=True, norm='l2') 
 counts = vectorizer.fit_transform(X_train)
 vocab = vectorizer.vocabulary_
@@ -132,6 +143,11 @@ acc = accuracy_score(y_test, predictions, normalize=True)
 print('Model Accuracy:%.2f'%acc)
 print(classification_report(y_test, predictions))
 
+
+
+##################################################################
+# Classifying Sentiment with multiple models
+# Same process as above, with multiple models
 models = [LogisticRegression(), DecisionTreeClassifier(), KNeighborsClassifier(), 
 SVC(), MLPClassifier(), RandomForestClassifier()]
 

@@ -1,12 +1,19 @@
+'''
+This program uses the Random Forest machine learning model to predit
+whether or not a student is admitted to Business school based
+on their gmat score, gpa, work experience, and age
+
+'''
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 import seaborn as sn
 import matplotlib.pyplot as plt
+import os
 
 import pandas as pd
-
 
 
 from sklearn.linear_model import LogisticRegression
@@ -19,6 +26,12 @@ from sklearn.svm import SVC
 from sklearn.neural_network import MLPClassifier
 
 
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+
+###################################################
+# Candidates data is hard-coded here
+# admitted: 2 yes, 1 wait-listed, 0 rejected
 candidates = {'gmat': [780,750,690,710,780,730,690,720,740,690,610,690,710,680,770,610,580,650,540,590,620,600,550,550,570,670,660,580,650,760,640,620,660,660,680,650,670,580,590,790],
               'gpa': [4,3.9,3.3,3.7,3.9,3.7,2.3,3.3,3.3,1.7,2.7,3.7,3.7,3.3,3.3,3,2.7,3.7,2.7,2.3,3.3,2,2.3,2.7,3,3.3,3.7,2.3,3.7,3.3,3,2.7,4,3.3,3.3,2.3,2.7,3.3,1.7,3.7],
               'work_experience': [3,4,3,5,4,6,1,4,5,1,3,5,6,4,3,1,4,6,2,3,2,1,4,1,2,6,4,2,6,5,1,2,4,6,5,1,2,1,4,5],
@@ -26,6 +39,8 @@ candidates = {'gmat': [780,750,690,710,780,730,690,720,740,690,610,690,710,680,7
               'admitted': [2,2,1,2,2,2,0,2,2,0,0,2,2,1,2,0,0,1,0,0,1,0,0,0,0,1,1,0,1,2,0,0,1,1,1,0,0,0,0,2]
               }
 
+###################################################
+# prepare data into dataframes
 df = pd.DataFrame(candidates,columns= ['gmat', 'gpa','work_experience','age','admitted'])
 # print (df)
 
@@ -36,8 +51,8 @@ y = df['admitted']
 
 X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.1,random_state=0)
 
-
-#build and test random forest model
+###################################################
+# build and test random forest model
 clf = RandomForestClassifier()
 clf.fit(X_train,y_train)
 y_pred=clf.predict(X_test)
@@ -45,11 +60,13 @@ print("y predictions: ", y_pred)
 # print("y actuals: ", y_test)
 
 confusion_matrix = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
-sn.heatmap(confusion_matrix, annot=True).get_figure().savefig("/home/ubuntu/environment/data5500_fall2022/week12_ml/random_forest.png")
+sn.heatmap(confusion_matrix, annot=True).get_figure().savefig(curr_dir + "/random_forest_matrix/random_forest.png")
 # sn.get_figure().savefig("results.png")
 print('Accuracy: ',metrics.accuracy_score(y_test, y_pred))
 plt.show()
 
+###################################################
+# Predict 3 new candidates using the Random Forest model just created
 print("3 candidate predictions...")
 print(clf.predict([[780, 4, 3, 25]])) # predict candidate with gmat 780, gpa 4.0, 3 yrs work exp., 25 years old
 print(clf.predict([[690, 3.3, 3, 25]])) #  predict candidate with gmat 690, gpa 3.3, 3 yrs work exp., 25 years old

@@ -1,5 +1,7 @@
 '''
-This program 
+This program reviews how Regression is used to fit "or learn" the coefficients
+in a dataset
+
 '''
 
 import os
@@ -15,7 +17,7 @@ import matplotlib.pyplot as plt
 
 curr_dir = os.path.dirname(__file__) # get the current directory of this file
 
-
+# This functions mathematically calculates the coefficients
 def estimate_coef(x, y):
     # number of observations/points
     n = np.size(x)
@@ -34,6 +36,7 @@ def estimate_coef(x, y):
  
     return (interc, coeff)
  
+# The function plots the line and saves it to a file
 def plot_regression_line(x, y, b):
     # plotting the actual points as scatter plot
     plt.scatter(x, y, color = "m",
@@ -53,6 +56,8 @@ def plot_regression_line(x, y, b):
     plt.show()
     plt.savefig(curr_dir + "/output/regression_byhand.png")
  
+ 
+# create dataset and run regression
 def main():
     # observations / data
     x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])

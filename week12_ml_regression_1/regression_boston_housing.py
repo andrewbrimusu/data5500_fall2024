@@ -1,3 +1,13 @@
+'''
+This program uses Linear Regression model from the sklearn library to fit the coefficients
+of the Boston Housing Dataset.
+This is a well known dataset, that you can read more on the data science site Kaggle.
+
+Review boston_housing_description.txt for more info.
+
+'''
+
+
 import os
 # os.system("sudo pip3 install sklearn")
 
@@ -6,7 +16,9 @@ import numpy as np
 from sklearn import datasets, linear_model, metrics
 import pandas as pd
 
-
+###################################################
+# Load the dataset directory from the sklearn repositor
+# using the load_boston function provided
 curr_dir = os.path.dirname(__file__) # get the current directory of this file
 
 
@@ -27,17 +39,24 @@ df_y.to_csv(curr_dir + "/output/boston_data_y.csv")
 # X = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]).reshape(-1,1)
 # y = np.array([2, 3, 4, 5, 7, 8, 8, 9, 15, 20]).reshape(-1,1)
  
+###################################################
 # splitting X and y into training and testing sets
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4,
                                                     random_state=1)
  
+ 
+###################################################
 # create linear regression object
 reg = linear_model.LinearRegression()
  
+ 
+###################################################
 # train the model using the training sets
 reg.fit(X_train, y_train)
  
+###################################################
+# View Results
 # regression coefficients
 print('Coefficients: ', reg.coef_)
  
