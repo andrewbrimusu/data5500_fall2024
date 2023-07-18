@@ -13,13 +13,20 @@ from sklearn.model_selection import train_test_split,cross_val_score, cross_val_
 import missingno as msno # plotting missing data
 import seaborn as sns # plotting library
 from sklearn import svm
+import os
 
 import matplotlib
 matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 matplotlib.style.use('ggplot')
 
-dataset = pd.read_csv("/home/ec2-user/environment/code/week11_ml/cars.csv")
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+cars_fil = curr_dir + "/cars.csv" # dirname and __file__ (this file) returns the current folder
+models_visualize_fil = curr_dir + "/models_visualize.png"
+
+dataset = pd.read_csv(cars_fil)
 dataset.describe()
 
 # Finding all the columns with NULL values
@@ -31,9 +38,6 @@ dataset = dataset.dropna(how='any',axis=0)
 dataset = dataset.reset_index()
 
 fig = sns.pairplot(dataset[['age', 'miles', 'debt', 'income', 'sales']], diag_kind="kde")
-
-# fig = sns_plot.get_figure()
-fig.savefig("models_visualize2.png")
 
 
 train_dataset = dataset.sample(frac=0.8,random_state=0)
@@ -63,28 +67,28 @@ y_train=train_labels
 y_test=test_labels
 
 
-# lin_reg = LinearRegression()
-# lin_reg.fit(x_train,y_train)
-# #Prediction using test set 
-# y_pred = lin_reg.predict(x_test)
-# mae=metrics.mean_absolute_error(y_test, y_pred)
-# mse=metrics.mean_squared_error(y_test, y_pred)
-# # Printing the metrics
-# print('R2 square:',metrics.r2_score(y_test, y_pred))
-# print('MAE: ', mae)
-# print('MSE: ', mse)
-
-
-dt_regressor = DecisionTreeRegressor(random_state = 0)
-dt_regressor.fit(x_train,y_train)
-#Predicting using test set 
-y_pred = dt_regressor.predict(x_test)
+lin_reg = LinearRegression()
+lin_reg.fit(x_train,y_train)
+#Prediction using test set 
+y_pred = lin_reg.predict(x_test)
 mae=metrics.mean_absolute_error(y_test, y_pred)
 mse=metrics.mean_squared_error(y_test, y_pred)
 # Printing the metrics
-print('Suppport Vector Regression Accuracy: ', dt_regressor.score(x_test,y_test))
 print('R2 square:',metrics.r2_score(y_test, y_pred))
 print('MAE: ', mae)
 print('MSE: ', mse)
+
+
+# dt_regressor = DecisionTreeRegressor(random_state = 0)
+# dt_regressor.fit(x_train,y_train)
+# #Predicting using test set 
+# y_pred = dt_regressor.predict(x_test)
+# mae=metrics.mean_absolute_error(y_test, y_pred)
+# mse=metrics.mean_squared_error(y_test, y_pred)
+# # Printing the metrics
+# print('Suppport Vector Regression Accuracy: ', dt_regressor.score(x_test,y_test))
+# print('R2 square:',metrics.r2_score(y_test, y_pred))
+# print('MAE: ', mae)
+# print('MSE: ', mse)
 
 

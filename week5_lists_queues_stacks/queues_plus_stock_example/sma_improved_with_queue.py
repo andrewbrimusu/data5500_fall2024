@@ -5,9 +5,16 @@ This approach using a queue in more memory efficient because it only loads the p
 memory that are required to calculate the moving average, as needed.
 '''
 
+import os
+
+
 # stock prices file
-file_path = "/home/ubuntu/environment/data5500_code/week5_lists_queues_stacks/queues_plus_stock_example/AAPL.txt"
-file = open(file_path, "r")
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+tkr = "AAPL"
+stock_fil = curr_dir + "/" + tkr + ".txt" # dirname and __file__ (this file) returns the current folder
+
+file = open(stock_fil, "r")
 
 # prices are read in using readline(), not readlines(), one at a time
 # prices is a queue implemented as a Python List
@@ -46,4 +53,4 @@ while line:
 print("tot_profit: ", tot_profit)
 print("percenage return%: ", 100 * tot_profit/first_price)
 
-input("pause")
+input("press enter")

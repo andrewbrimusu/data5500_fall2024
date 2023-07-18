@@ -16,8 +16,13 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+import os
 
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+model_visualize_fil = curr_dir + "/output/" + "cluster_classes_models_visualize.png"
 h = .02  # step size in the mesh
+
 
 names = ["Nearest Neighbors", "Linear SVM", "RBF SVM", "Gaussian Process",
          "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
@@ -115,4 +120,4 @@ for ds_cnt, ds in enumerate(datasets):
 
 plt.tight_layout()
 plt.show()
-plt.savefig("models_visualize.png")
+plt.savefig(model_visualize_fil)

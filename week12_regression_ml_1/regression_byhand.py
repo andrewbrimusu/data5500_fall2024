@@ -1,17 +1,20 @@
+'''
+This program 
+'''
+
 import os
-<<<<<<< HEAD
-os.system("sudo pip3 ")
-=======
+
 # os.system("sudo pip3 install networkx")
 # os.system("sudo apt-get install libjpeg-dev zlib1g-dev")
 # os.system("sudo pip3 install Pillow")
 # os.system("sudo pip3 install matplotlib")
 
->>>>>>> cb36103687c41f6ddb691f65fb602ff17b1add28
 
 import numpy as np
 import matplotlib.pyplot as plt
- 
+
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
 
 def estimate_coef(x, y):
     # number of observations/points
@@ -26,10 +29,10 @@ def estimate_coef(x, y):
     SS_xx = np.sum(x*x) - n*m_x*m_x
  
     # calculating regression coefficients
-    b_1 = SS_xy / SS_xx
-    b_0 = m_y - b_1*m_x
+    coeff = SS_xy / SS_xx
+    interc = m_y - coeff * m_x
  
-    return (b_0, b_1)
+    return (interc, coeff)
  
 def plot_regression_line(x, y, b):
     # plotting the actual points as scatter plot
@@ -48,20 +51,20 @@ def plot_regression_line(x, y, b):
  
     # function to show plot
     plt.show()
-    plt.savefig("/home/ubuntu/environment/data5500.fa21/week10_regression/regression_byhand.png")
+    plt.savefig(curr_dir + "/output/regression_byhand.png")
  
 def main():
     # observations / data
     x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    y = np.array([1, 3, 2, 5, 7, 8, 8, 9, 10, 12])
+    y = np.array([2, 3, 4, 5, 7, 8, 8, 9, 15, 20])
  
     # estimating coefficients
-    b = estimate_coef(x, y)
-    print("Estimated coefficients:\nb_0 = {}  \
-          \nb_1 = {}".format(b[0], b[1]))
+    interc, coeff = estimate_coef(x, y)
+    print("intercept: ", interc)
+    print("coeff: ", coeff)
  
     # plotting regression line
-    plot_regression_line(x, y, b)
+    plot_regression_line(x, y, (interc, coeff))
  
 if __name__ == "__main__":
     main()

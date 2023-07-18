@@ -25,6 +25,10 @@ from sklearn.preprocessing import LabelBinarizer
 import matplotlib.pyplot as plt
 from string import punctuation, digits
 from IPython.core.display import display, HTML
+
+# run first time, then comment out
+os.system("pip3 install nltk")
+
 from nltk.corpus import stopwords
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -52,19 +56,23 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import classification_report
 
-    
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
 #Amazon Data
-input_file = "~/environment/code/week13_ml_sentiment/amazon_cells_labelled.txt"
+input_file = curr_dir + "/amazon_cells_labelled.txt"
 amazon = pd.read_csv(input_file,delimiter='\t',header=None)
 amazon.columns = ['Sentence','Class']
+
 #Yelp Data
-input_file = "~/environment/code/week13_ml_sentiment/yelp_labelled.txt"
+input_file = curr_dir + "/yelp_labelled.txt"
 yelp = pd.read_csv(input_file,delimiter='\t',header=None)
 yelp.columns = ['Sentence','Class']
+
 #Imdb Data
-input_file = "~/environment/code/week13_ml_sentiment/imdb_labelled.txt"
+input_file = curr_dir + "/imdb_labelled.txt"
 imdb = pd.read_csv(input_file,delimiter='\t',header=None)
 imdb.columns = ['Sentence','Class']
+
 #combine all data sets
 data = pd.DataFrame()
 data = pd.concat([amazon, yelp, imdb])
@@ -129,9 +137,12 @@ SVC(), MLPClassifier(), RandomForestClassifier()]
 
 
 for classifier in models:
-    classifier = SGDClassifier(alpha=1e-05,max_iter=50,penalty='elasticnet')
+    # classifier = SGDClassifier(alpha=1e-05,max_iter=50,penalty='elasticnet')
     targets = y_train
     classifier = classifier.fit(counts, targets)
+    if "MLP" in str(classifier):
+        print("MLP Classifier still fitting...")
+        
     example_counts = vectorizer.transform(X_test)
     predictions = classifier.predict(example_counts)
     

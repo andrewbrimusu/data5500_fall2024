@@ -5,11 +5,15 @@ import os
 # os.system("sudo pip3 install keras")
 # os.system("sudo pip3 install matplotlib")
 # os.system("sudo pip3 install --upgrade pip")
-# os.system("sudo pip3 install tensorflow==2.2")
+# os.system("sudo pip3 install tensorflow ")
 
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
+# run first time, then comment out
+os.system("sudo pip3 install keras")
+from tensorflow.keras.optimizers import Adam # - Works
 
 import keras
 from keras import metrics
@@ -17,15 +21,16 @@ from keras import regularizers
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten, Activation
 from keras.layers import Conv2D, MaxPooling2D
-from keras.optimizers import Adam, RMSprop
+# from keras.optimizers import Adam, RMSprop
 from keras.callbacks import TensorBoard, EarlyStopping, ModelCheckpoint
-from keras.utils import plot_model
-from keras.models import load_model
+# from keras.utils import plot_model
+# from keras.models import load_model
 
 
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
 
 
-kc_data_org = pd.read_csv("kc_house_data.csv")
+kc_data_org = pd.read_csv(curr_dir + "/kc_house_data.csv")
 
 
 
@@ -201,7 +206,7 @@ def plot_hist(h, xsize=6, ysize=10):
     
     # Plot it all in IPython (non-interactive)
     # plt.draw()
-    plt.savefig("fig.png")
+    plt.savefig(curr_dir + "/output/kc_housing.png")
     plt.show()
 
     return

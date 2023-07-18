@@ -9,7 +9,16 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
+
+import os
+
 # load dataset
+
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+pima_indias_diabetes_img_fil = curr_dir + "/output/pima_indians_diabets_models_compage.png" # dirname and __file__ (this file) returns the current folder
+
+
 url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
 names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
 dataframe = pandas.read_csv(url, names=names)
@@ -44,7 +53,8 @@ ax = fig.add_subplot(111)
 plt.boxplot(results)
 ax.set_xticklabels(names)
 plt.show()
-plt.savefig("models_compare.png")
+
+plt.savefig(pima_indias_diabetes_img_fil)
 
 plt.close()
 print('hi')

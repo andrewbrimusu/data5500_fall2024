@@ -4,6 +4,11 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn import datasets, linear_model, metrics
+import pandas as pd
+
+
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
 
 # load the boston dataset
 boston = datasets.load_boston(return_X_y=False)
@@ -12,9 +17,15 @@ boston = datasets.load_boston(return_X_y=False)
 X = boston.data
 y = boston.target
 
+df_x = pd.DataFrame(X)
+df_x.to_csv(curr_dir + "/output/boston_data_X.csv")
 
-X = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]).reshape(-1,1)
-y = np.array([1, 3, 2, 5, 7, 8, 8, 9, 10, 12])#.reshape(-1,1)
+df_y = pd.DataFrame(y)
+df_y.to_csv(curr_dir + "/output/boston_data_y.csv")
+
+
+# X = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]).reshape(-1,1)
+# y = np.array([2, 3, 4, 5, 7, 8, 8, 9, 15, 20]).reshape(-1,1)
  
 # splitting X and y into training and testing sets
 from sklearn.model_selection import train_test_split
@@ -55,6 +66,7 @@ plt.legend(loc = 'upper right')
 ## plot title
 plt.title("Residual errors")
  
+
 ## method call for showing the plot
 plt.show()
-plt.savefig("/home/ubuntu/environment/data5500.fa21/week10_regression/regression_boston_housing.png")
+plt.savefig(curr_dir + "/output/regression_boston_housing.png")
