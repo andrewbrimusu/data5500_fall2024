@@ -136,6 +136,7 @@ targets = y_train
 # fit classifer model
 classifier = classifier.fit(counts, targets)
 
+
 # transform X for predictions
 example_counts = vectorizer.transform(X_test)
 predictions = classifier.predict(example_counts)
@@ -144,14 +145,12 @@ predictions = classifier.predict(example_counts)
 acc = accuracy_score(y_test, predictions, normalize=True)
 # hit = precision_score(y_test, predictions, average=None,labels=classes)
 # capture = recall_score(y_test, predictions, average=None,labels=classes)
-print(str(classifier), 'Model Accuracy:%.2f'%acc)
+print('Model Accuracy:%.2f'%acc)
 print(classification_report(y_test, predictions))
 
 
 
 ##################################################################
-# Programming activity
-# 
 # Classifying Sentiment with multiple models
 # Same process as above, with multiple models
 models = [LogisticRegression(), DecisionTreeClassifier(), KNeighborsClassifier(), 
@@ -159,14 +158,27 @@ SVC(), MLPClassifier(), RandomForestClassifier()]
 
 
 for classifier in models:
+    # classifier = SGDClassifier(alpha=1e-05,max_iter=50,penalty='elasticnet')
     targets = y_train
     
     # 1. fit the classifier model
+    classifier = classifier.fit(counts, targets)
+    if "MLP" in str(classifier):
+        print("MLP Classifier still fitting...")
+        
     
     # 2. transform X for predictions
+    example_counts = vectorizer.transform(X_test)
     
     # 3. predict
+    predictions = classifier.predict(example_counts)
     
+    #Model Evaluation
     # 4. call accuracy_score to calculate model accuracy
+    acc = accuracy_score(y_test, predictions, normalize=True)
+    # hit = precision_score(y_test, predictions, average=None,labels=classes)
+    # capture = recall_score(y_test, predictions, average=None,labels=classes)
     
     # 5. print model name and model accuracy
+    print(str(classifier), 'Model Accuracy:%.2f'%acc)
+    print(classification_report(y_test, predictions))
