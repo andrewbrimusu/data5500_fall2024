@@ -55,7 +55,9 @@ print(dt_s, d[key_md][key_prc][key_usd])
 
 
 # create csv file for coin
-file = open(coin + ".csv", "w")
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+file = open(curr_dir + "/" + coin + ".csv", "w")
 file.write("Date," + coin + "\n")
 
 # iterate through 365 days, request data, write prices to csv

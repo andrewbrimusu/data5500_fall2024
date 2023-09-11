@@ -32,7 +32,9 @@ dct1 = json.loads(request.text)
 
 
 # create csv file to store stock data
-file = open(ticker + ".csv", "w")
+curr_dir = os.path.dirname(__file__) # get the current directory of this file
+
+file = open(curr_dir + "/" + ticker + ".csv", "w")
 file.write("Date," + ticker + "\n")
 
 
