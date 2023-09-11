@@ -9,6 +9,7 @@ The data is written to a csv
 import requests
 import json
 import time
+import os
 from datetime import datetime, timedelta
 
 
