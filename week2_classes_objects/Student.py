@@ -16,6 +16,8 @@ class Student:
     def set_name(self, name):
         self.name = name
         
+    def set_anum(self, anum):
+        self.__anum = anum
         
 andy = Student("a000001", "andy")
 print(andy.get_name())
