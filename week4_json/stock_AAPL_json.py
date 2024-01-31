@@ -12,7 +12,7 @@ import json
 
 
 # example url to pull alphavantage data
-url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=AAPL&outputsize=full&apikey=NG9C9EPVYBMQT0C8'
+url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=AAPL&outputsize=full&apikey=NG9C9EPVYBMQT0C8'
 
 
 # variables to query alphavantage
@@ -22,7 +22,7 @@ key_close = "5. adjusted close"
 first_date = "2022-05-30"
 
 #generate url
-url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol='+ticker+'&outputsize=full&apikey=NG9C9EPVYBMQT0C8'
+url = 'http://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol='+ticker+'&outputsize=full&apikey=NG9C9EPVYBMQT0C8'
 print(url)
 
 # requests stock data from alphavarange web json api
